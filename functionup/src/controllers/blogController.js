@@ -142,14 +142,9 @@ const deleteBlogByParams = async function (req, res) {
         const tags = req.query.tags
         const subcategory = req.query.subcategory
         const unpublished = req.query.isPublished
-         
-        if(!isValid(category)) return res.send("Error")
-
-
         const blogisDeletedOrNot = await blogModel.findOne({ authorId: authorId, category: category, tags: tags, subcategory: subcategory, isPublished: unpublished })
         //const blogisDeletedOrNot = await blogModel.findOne(query)   // Optional 
-
-
+        
         if (!blogisDeletedOrNot) return res.status(404).send({ Status: "false", msg: "Not Matching Information Found With This" })
         if (!blogisDeletedOrNot.isDeleted == false) {
             return res.status(404).send({ status: false, msg: "User is not Present / it's a deleted User" })

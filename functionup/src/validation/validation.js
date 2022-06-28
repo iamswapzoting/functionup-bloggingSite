@@ -68,7 +68,7 @@ const blogSchemaValidation = async function (req, res, next) {
 
         let authorId = req.body.authorId
         if (typeof (authorId) != 'string' || !authorId) return res.status(400).send({ msg: "authorId is need to be given" })
-        if (!isValidObjectId(blogId)) return res.status(400).send({ status: false, msg: "invalid blogId" })
+        if (!isValidObjectId(authorId)) return res.status(400).send({ status: false, msg: "invalid authorId" })
 
         let category = req.body.category
         if (!category) return res.status(400).send({ status: false, msg: "category is need to required" })
